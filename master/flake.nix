@@ -1,0 +1,26 @@
+{
+  description = ''The elvis package implements a 'truthy', 'ternary' and a 'coalesce' operator to Nim as syntactic sugar for working with conditional expressions'';
+
+  inputs.flakeNimbleLib.owner = "riinr";
+  inputs.flakeNimbleLib.ref   = "master";
+  inputs.flakeNimbleLib.repo  = "nim-flakes-lib";
+  inputs.flakeNimbleLib.type  = "github";
+  inputs.flakeNimbleLib.inputs.nixpkgs.follows = "nixpkgs";
+  
+  inputs.src-elvis-master.flake = false;
+  inputs.src-elvis-master.owner = "mattaylor";
+  inputs.src-elvis-master.ref   = "refs/heads/master";
+  inputs.src-elvis-master.repo  = "elvis";
+  inputs.src-elvis-master.type  = "github";
+  
+  outputs = { self, nixpkgs, flakeNimbleLib, ...}@deps:
+  let 
+    lib  = flakeNimbleLib.lib;
+    args = ["self" "nixpkgs" "flakeNimbleLib" "src-elvis-master"];
+  in lib.mkRefOutput {
+    inherit self nixpkgs ;
+    src  = deps."src-elvis-master";
+    deps = builtins.removeAttrs deps args;
+    meta = builtins.fromJSON (builtins.readFile ./meta.json);
+  };
+}
