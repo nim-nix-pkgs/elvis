@@ -11,6 +11,7 @@
   inputs.src-elvis-v0_5_0.ref   = "refs/tags/v0.5.0";
   inputs.src-elvis-v0_5_0.owner = "mattaylor";
   inputs.src-elvis-v0_5_0.repo  = "elvis";
+  inputs.src-elvis-v0_5_0.dir   = "";
   inputs.src-elvis-v0_5_0.type  = "github";
   
   outputs = { self, nixpkgs, flakeNimbleLib, ...}@deps:
