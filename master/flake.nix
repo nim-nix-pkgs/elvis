@@ -11,7 +11,6 @@
   inputs.src-elvis-master.ref   = "refs/heads/master";
   inputs.src-elvis-master.owner = "mattaylor";
   inputs.src-elvis-master.repo  = "elvis";
-  inputs.src-elvis-master.dir   = "";
   inputs.src-elvis-master.type  = "github";
   
   outputs = { self, nixpkgs, flakeNimbleLib, ...}@deps:
